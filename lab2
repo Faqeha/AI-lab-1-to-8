@@ -1,0 +1,43 @@
+# mini project 1:
+def fizz_buzz():
+    for i in range(1, 101):  
+        if i % 3 == 0 and i % 5 == 0:
+            print("Fizz Buzz")
+        elif i % 3 == 0:
+            print("Fizz")
+        elif i % 5 == 0:
+            print("Buzz")
+        else:
+            print(i)
+
+fizz_buzz()
+
+
+# mini project 2:
+
+movies = [
+    ("Eternal Sunshine of the Spotless Mind", 20000000),
+    ("Memento", 9000000),
+    ("Requiem for a Dream", 4500000),
+    ("Pirates of the Caribbean: On Stranger Tides", 379000000),
+    ("Avengers: Age of Ultron", 365000000),
+    ("Avengers: Endgame", 356000000),
+    ("Incredibles 2", 200000000)
+]
+
+num_movies = int(input("How many movies do you want to add? "))
+for _ in range(num_movies):
+    name = input("Enter movie name: ")
+    budget = int(input("Enter movie budget: "))
+    movies.append((name, budget))
+
+average_budget = sum(budget for _, budget in movies) / len(movies)
+print(f"\nAverage movie budget: ${average_budget:,.2f}\n")
+
+high_budget_movies = [(name, budget) for name, budget in movies if budget > average_budget]
+
+for name, budget in high_budget_movies:
+    difference = budget - average_budget
+    print(f"{name} had a budget ${difference:,.2f} higher than the average.")
+
+print(f"\nNumber of movies with a budget higher than average: {len(high_budget_movies)}")
