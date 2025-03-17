@@ -1,0 +1,21 @@
+class ModelBasedReflexAgent:
+    def __init__(self, threshold=22):
+        self.threshold = threshold  
+        self.previous_action = None  
+
+    def perceive(self, temperature):
+        if temperature < self.threshold and self.previous_action != "ON":
+            self.previous_action = "ON"
+            return "Turning Heater ON"
+        elif temperature >= self.threshold and self.previous_action != "OFF":
+            self.previous_action = "OFF"
+            return "Turning Heater OFF"
+        else:
+            return f"Heater remains {self.previous_action}"
+
+agent = ModelBasedReflexAgent(threshold=22)
+
+temperatures = [18, 20, 22, 24, 21, 22, 18]  
+
+for temp in temperatures:
+    print(f"Temperature: {temp}°C -> {agent.perceive(temp)}")
